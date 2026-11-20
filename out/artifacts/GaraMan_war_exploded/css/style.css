@@ -1,0 +1,226 @@
+/* ===== GaraMan - giao diện chung cho mọi trang ===== */
+
+:root {
+    --primary: #1f5fa8;
+    --primary-dark: #174a84;
+    --bg: #f2f5f9;
+    --card: #ffffff;
+    --text: #222;
+    --muted: #666;
+    --border: #d6dde6;
+    --danger: #c0392b;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    background: var(--bg);
+}
+
+/* nội dung nằm giữa trang, rộng tối đa 900px */
+body {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 16px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+h2 {
+    margin: 0 auto 20px;
+    padding: 16px 20px;
+    background: var(--primary);
+    color: #fff;
+    border-radius: 8px;
+    font-size: 22px;
+}
+
+h3 {
+    margin: 24px auto 10px;
+    color: var(--primary-dark);
+    font-size: 17px;
+}
+
+h4 {
+    margin: 12px auto;
+    padding: 10px 14px;
+    background: #fff4e5;
+    border-left: 4px solid #f0a020;
+    border-radius: 4px;
+    font-weight: normal;
+}
+
+p {
+    margin: 8px auto;
+}
+
+/* ----- danh sách chức năng ở trang chủ ----- */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto 20px;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+ul li a {
+    display: block;
+    padding: 14px 18px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+ul li a:hover {
+    border-color: var(--primary);
+    background: #eaf2fb;
+}
+
+a {
+    color: var(--primary);
+}
+
+/* ----- form ----- */
+form {
+    margin: 0 auto 12px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"] {
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 15px;
+    min-width: 220px;
+}
+
+input[type="number"] {
+    min-width: 90px;
+    width: 90px;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(31, 95, 168, 0.15);
+}
+
+input[type="submit"],
+button {
+    padding: 8px 18px;
+    border: none;
+    border-radius: 6px;
+    background: var(--primary);
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover,
+button:hover {
+    background: var(--primary-dark);
+}
+
+/* nút phụ: Quay lại, Về trang chủ, Đăng xuất */
+a > button {
+    background: #fff;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+}
+
+a > button:hover {
+    background: #eaf2fb;
+}
+
+input[type="radio"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+/* ----- bảng ----- */
+table {
+    border-collapse: collapse;
+    background: var(--card);
+    margin: 0 auto 12px 0;
+}
+
+table[border="1"] {
+    width: 100%;
+    border: 1px solid var(--border) !important;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+table[border="1"] th {
+    background: #e7eef7;
+    color: var(--primary-dark);
+    text-align: left;
+    font-weight: 600;
+}
+
+table[border="1"] th,
+table[border="1"] td {
+    padding: 9px 12px;
+    border: 1px solid var(--border);
+}
+
+table[border="1"] tr:nth-child(even) td {
+    background: #f8fafc;
+}
+
+table[border="1"] tr:hover td {
+    background: #eef4fb;
+}
+
+/* bảng thông tin (không viền): khách hàng, chi tiết, đăng nhập */
+table:not([border="1"]) {
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+table:not([border="1"]) td {
+    padding: 6px 10px;
+}
+
+table:not([border="1"]) td:nth-child(odd) {
+    color: var(--muted);
+}
+
+/* tổng tiền */
+#lblTotalAmount {
+    color: var(--danger);
+    font-size: 20px;
+}
+
+/* ----- khi in hoá đơn: bỏ màu nền và nút ----- */
+@media print {
+    body {
+        background: #fff;
+        padding: 0;
+    }
+    h2 {
+        background: none;
+        color: #000;
+        padding: 0;
+    }
+    button,
+    input[type="submit"],
+    form {
+        display: none;
+    }
+}
