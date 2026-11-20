@@ -8,7 +8,8 @@
     1. Tạo đối tượng Bill và set các thuộc tính (repair, saleStaff, paymentDate, totalAmount).
     2. Gọi BillDAO.saveBill(bill) để lưu xuống CSDL.
     3. Thành công: hiện hoá đơn, thông báo lưu hoá đơn thành công kèm tổng tiền
-       cần thu, click OK thì in hoá đơn, quay về gdSaleHome.jsp. (NV nhận tiền của khách ngoài hệ thống.)
+       cần thu, click OK thì in hoá đơn. Hoá đơn vẫn hiện trên trang, NV click
+       "Về trang chính" để quay về gdSaleHome.jsp. (NV nhận tiền của khách ngoài hệ thống.)
        Lỗi: thông báo và quay lại gdBill.jsp.
 --%>
 <%
@@ -99,11 +100,17 @@
 
     <h3>Tổng tiền: <%=String.format("%,.0f", bill.getTotalAmount())%> đ</h3>
 
+    <%-- các nút bị ẩn khi in (xem @media print trong style.css) --%>
+    <button type="button" onclick="window.print()">In lại hoá đơn</button>
+    <a href="gdSaleHome.jsp"><button type="button">Về trang chính</button></a>
+
 <script type="text/javascript">
     window.onload = function () {
-        alert("Lưu hoá đơn thành công! Tổng tiền cần thu: <%=String.format("%,.0f", bill.getTotalAmount())%> đ");
-        window.print();   // click OK -> in hoá đơn
-        window.location = "gdSaleHome.jsp";   // in xong -> quay về trang chính
+        // chờ trình duyệt vẽ xong hoá đơn rồi mới hiện thông báo
+        setTimeout(function () {
+            alert("Lưu hoá đơn thành công! Tổng tiền cần thu: <%=String.format("%,.0f", bill.getTotalAmount())%> đ");
+            window.print();   // click OK -> in hoá đơn; in xong vẫn ở lại trang hoá đơn
+        }, 300);
     };
 </script>
 </body>
